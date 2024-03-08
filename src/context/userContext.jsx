@@ -1,11 +1,11 @@
 
 import React, { createContext, useEffect, useState, useContext } from "react";
-import {services} from '../../api/services'
+import {servicesLogin} from '../../api/services'
 import Swal from 'sweetalert2'
 
 
 const UserContext = createContext();
-//estado inicial para el usuario
+//estado inicial para el user
 const inicialState={
     id: 0,
     email: "",
@@ -30,13 +30,12 @@ export const UserProvider = (props) => {
     }, []);
 
     //loginUser para iniciar sesion
-    //(user para capturar datos de usuario, history para mover lo del usuario)
+    //(user para capturar datos de user, history para mover lo del user)
 
     const loginUser = async (user, navigate) => {
         try {
             setLoading(true);
-            const data = await services(user)
-            console.log(data)
+            const data = await servicesLogin(user)
             setLoading(false);
             if (data.id !=0) {
                 const userLogin = {
@@ -57,12 +56,12 @@ export const UserProvider = (props) => {
                     showConfirmButton: false,
                     timer: 1500,
                 });
-                //navigate para mover al usuario por las rutas                
+                //navigate para mover al user por las rutas                
                 navigate('/')
             } else{
                 Swal.fire({
                     icon: 'error',
-                    title: "usuario no existe en la base de datos",
+                    title: "user no existe en la base de datos",
                     showConfirmButton: false,
                     timer: 1500,
                 });
@@ -73,65 +72,6 @@ export const UserProvider = (props) => {
         }
 
     };
-    //registerUser para registrar nuevo usuario
-    //user para capturar dato de usuario, history para mover lo del usuario
-
-    // const registerUser = async (user, navigate, ok) => {
-    //     try {
-    //         setLoading(true);
-    //         const { data } = await axios.post('user/register', user);
-    //         setLoading(false);
-    //         console.log(data);
-    //         if (ok){
-    //             if (data.ok) {
-    //                 const userLogin = {
-    //                     login: true,
-    //                     name: data.name,
-    //                     id: data._id,
-    //                     roles:data.roles,
-    //                     token: data.token,
-    //                     email: data.email,
-                        
-    //                 }
-    //                 //console.log(userLogin)
-    //                 localStorage.setItem('user', JSON.stringify(userLogin));
-    //                 setUser(userLogin);
-    //                 // Swal.fire({
-    //                 //     icon: 'success',
-    //                 //     title: data.message,
-    //                 //     showConfirmButton: false,
-    //                 //     timer: 1500,
-    //                 // });
-    //                 //navigate para mover al usuario por las rutas
-    //                 navigate("/homeproducts");
-    //         }else{
-    //             // Swal.fire({
-    //             //     icon: 'success',
-    //             //     title: data.message,
-    //             //     showConfirmButton: false,
-    //             //     timer: 1500,
-    //             // });
-    //             //navigate para mover al usuario por las rutas
-    //                 router.push("/homeuser");
-    //         }
-               
-    //         }
-
-    //     } catch (error) {
-    //         setLoading(false);
-      
-    //         if (!error.response.data.ok) {
-    //             // return Swal.fire({
-    //             //     icon: 'error',
-    //             //     title: error.response.data.message,
-    //             //     showConfirmButton: false,
-    //             //     timer: 1500,
-    //             // });
-    //         }
-    //         console.log('error registerUser', error.message);
-
-    //     }
-    // }
 
     //cerrar sesion
     const exit = () => {
@@ -143,7 +83,6 @@ export const UserProvider = (props) => {
     const value = {
         user,
         loginUser,
-        //registerUser,
         exit,
         loading,
     };

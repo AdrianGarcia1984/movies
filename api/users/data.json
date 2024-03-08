@@ -3,7 +3,7 @@
   "users": [
     {
       "id": 1,
-      "login":false,
+      "login":true,
       "email": "george.bluth@reqres.in",
       "first_name": "George",
       "last_name": "Bluth",
@@ -13,7 +13,7 @@
     },
     {
       "id": 2,
-      "login":false,
+      "login":true,
       "email": "janet.weaver@reqres.in",
       "first_name": "Janet",
       "last_name": "Weaver",
@@ -23,6 +23,7 @@
     },
     {
       "id": 3,
+      "login":true,
       "email": "emma.wong@reqres.in",
       "first_name": "Emma",
       "last_name": "Wong",
@@ -32,6 +33,7 @@
     },
     {
       "id": 4,
+      "login":true,
       "email": "eve.holt@reqres.in",
       "first_name": "Eve",
       "last_name": "Holt",
@@ -41,6 +43,7 @@
     },
     {
       "id": 5,
+      "login":true,
       "email": "charles.morris@reqres.in",
       "first_name": "Charles",
       "last_name": "Morris",
@@ -50,6 +53,7 @@
     },
     {
       "id": 6,
+      "login":true,
       "email": "tracey.ramos@reqres.in",
       "first_name": "Tracey",
       "last_name": "Ramos",

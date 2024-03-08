@@ -12,25 +12,19 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {results} from '../../api/movies/movies.json'
 import { useNavigate } from 'react-router-dom';
-import { useUser } from "../context/userContext";
 import { useFormik } from 'formik'
 import * as Yup from "yup"
 import Alert from '@mui/material/Alert';
-import AlertIcon from '@mui/icons-material/Check';
 import ErrorIcon from '@mui/icons-material/Error';
-
-
-
-
+import {useUser} from '../context/userContext'
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://adriangarcia.co" target="_blank">
+      adriangarcia.co
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -38,31 +32,12 @@ function Copyright(props) {
   );
 }
 
-const inicialState={
-  id: 0,
-  email: "",
-  login:false,
-  first_name: "",
-  last_name: "",
-  avatar: "",
-  password: "",
-  movies :[]
-}
-
 const defaultTheme = createTheme();
 
 export const Login = () => {
 
-  const [user, setUser]= useState()
-  const { loading, loginUser } = useUser();
   const navigate = useNavigate();
-
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    loginUser(data, navigate);
-  };
+  const { loginUser } = useUser(); 
 
   const formik = useFormik({
     initialValues: {
@@ -75,13 +50,12 @@ export const Login = () => {
         password: Yup.string()
             .required('el password es obligatorio '),
     }),
-    onSubmit: async valores => {
-      loginUser(valores, navigate);       
-
+    onSubmit: async  valores => {
+      await loginUser(valores, navigate);   
+      
     }
 })
   
-
   return (
     <ThemeProvider theme={defaultTheme}>
       <Grid container component="main" sx={{ height: '100vh' }}>

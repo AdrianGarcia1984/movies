@@ -2,17 +2,19 @@
 import './pages/main.css'
 import { Login } from './pages/Login'
 import { Home } from './pages/Home'
-import {contentCategory} from './pages/contentCategory'
+import { ContentDetails } from './pages/ContentDetails'
+import { ContentCategory } from './pages/ContentCategory'
+import Footer from './components/Footer'
+
 import { NavBar } from './components/NavBar';
 import {BrowserRouter as Router, Routes,  Route, Navigate } from "react-router-dom"
-import { useUser } from './context/userContext';
 
 function App() {
 
-  const {user}= useUser()
-
+  const user= JSON.parse(localStorage.getItem("user"))
+  
   const Private = ({children})=>{
-    return  user.login? children:<Navigate to= "/auth"/>
+    return  user!=null && user.login!= false ? children:<Navigate to= "/auth"/>
   }
 
   return (
@@ -23,12 +25,12 @@ function App() {
       <Router>
         <Routes>
           <Route path='/auth' element={<Login/>}/>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/contentCategory' element={<contentCategory/>}/>
-          <Route path='/' element={<Login/>}/>
+          <Route path='/' element={<Private><Home/></Private>}/>
+          <Route path='/contentCategory/:id?' element={<Private><ContentCategory/></Private>}/>
+          <Route path='/ContentDetails/:id?' element={<Private><ContentDetails/></Private>}/>
 
         </Routes>
-
+        <Footer/>
 
   
       </Router>
