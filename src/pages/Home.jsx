@@ -4,7 +4,6 @@ import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -21,21 +20,8 @@ export const Home = () => {
     const {user}= useUser()
     const navigate = useNavigate()
     var [genres, setGenres] = useState([])
-    var [movie, setMovie] = useState([])
     const [page, setPage] = useState(1);
     const [totalPage, setTotalPage] = useState("");
-    
-
-
-   const  url= 'https://api.themoviedb.org/3/genre/movie/list?language=es'
-   const urlImages = "https://image.tmdb.org/t/p/original/"
-   const urlimg = "https://source.unsplash.com/random?"
-    const options = {
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZWMzOWYxYzI4MGU0NDMwYTNjZjNkODljNmE1MjJhNyIsInN1YiI6IjY1ZTc5NmNjNTFmOTlhMDE4NWZiY2U2MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7h0ypTGWkeq70iSUvCcFlOkdccEmJPe3Iajn-2FC9lk'
-      }
-    };
     
     useEffect(() => {
         getGenres();
